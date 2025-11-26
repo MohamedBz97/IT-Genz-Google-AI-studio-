@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,6 +5,9 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Morocco IT Talent Hub</title>
+    <script>
+      tailwind.config = {}
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       html {
@@ -16,8 +18,8 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
-      /* Custom animation for the logo */
-      @keyframes orbit {
+      /* Custom animation for the new logo */
+      @keyframes spin-slow {
         from {
           transform: rotate(0deg);
         }
@@ -25,8 +27,97 @@
           transform: rotate(360deg);
         }
       }
-      .animate-orbit {
-        animation: orbit 2s linear infinite;
+      .animate-spin-slow {
+        animation: spin-slow 8s linear infinite;
+      }
+       /* New reverse animation for logo */
+      @keyframes spin-slow-reverse {
+        from {
+          transform: rotate(360deg);
+        }
+        to {
+          transform: rotate(0deg);
+        }
+      }
+      .animate-spin-slow-reverse {
+        animation: spin-slow-reverse 6s linear infinite;
+      }
+      /* Custom animation for cards */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-fadeInUp {
+        opacity: 0; /* Start hidden */
+        animation: fadeInUp 0.5s ease-out forwards;
+      }
+      /* Flashcard flip animation */
+      .flashcard-container {
+        perspective: 1000px;
+      }
+      .flashcard-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+      }
+      .flashcard-inner.is-flipped {
+        transform: rotateY(180deg);
+      }
+      .flashcard-front,
+      .flashcard-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+      }
+      .flashcard-back {
+        transform: rotateY(180deg);
+      }
+      /* New Hero animations */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes background-pan {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .animate-background-pan {
+        animation: background-pan 15s linear infinite;
+      }
+      
+      /* New animation for text gradient shimmer */
+      @keyframes text-shimmer {
+        from { background-position: 200% center; }
+        to { background-position: -200% center; }
+      }
+      .animate-text-shimmer {
+        background-size: 200% auto;
+        animation: text-shimmer 8s linear infinite;
       }
     </style>
   <script type="importmap">
@@ -35,12 +126,13 @@
     "react": "https://aistudiocdn.com/react@^19.2.0",
     "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
     "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.548.0"
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.548.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0"
   }
 }
 </script>
 </head>
-  <body class="bg-gray-50">
+  <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>
